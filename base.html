@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="js/adapter.js"></script>
+
+	<style>
+		video{
+			width: 40vw;
+			height: 30vw;
+		}
+
+		label{
+			padding: 20px;
+			margin: 0px;
+			font-size: 36px;
+			color: white;
+			background-color: #A196F3; /* light blue */
+			border-width: 6px;
+			border-color: #A196F3;
+			border-style: solid;
+		}
+
+		input{
+			width: 20vw;
+			padding: 20px;
+			margin: 0px;
+			font-size: 36px;
+			color: white;
+			background-color: #A196F3; /* light blue */
+			border-width: 6px;
+			border-color: white;
+			border-style: inset;
+		}
+
+		button{
+			padding: 20px;
+			margin: 0px;
+			font-size: 36px;
+			border: none;
+			color: white;
+			background-color: #A196F3; /* light blue */
+		}
+
+
+	.dropdown{
+		width: 60vw;
+		margin: 0;
+		padding: 0;
+		font-size: 0;
+		overflow: hidden;
+	}
+
+	.dropdown-content{
+		display: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.dropdown:hover .dropdown-content {
+			display: block;
+	}
+
+	.dropdown-option{
+		margin: 0;
+		padding: 0;
+		border: none;
+		overflow: hidden;
+	}
+
+	.dropwdown-label{
+		display: inline-block;
+	}
+
+	.dropdown:hover .dropdown-label {
+		background-color:  #A196FF; /* light blue */
+	}
+
+	.dropdown-option-label{
+		display: inline-block;
+		padding: 10px;
+		width: 100%;
+	}
+
+	.button-call{
+		display: inline-block;
+
+		box-sizing: border-box;
+		background-color: lightgreen; /* light blue */
+	}
+
+	</style>
+</head>
+<body>
+	<h1>THIS IS ONE GREAT PAGE</h1>
+
+	<video class="localVideo" controls autoplay></video>
+	<video class="remoteVideo" controls autoplay></video>
+	<br>
+	<label>Username</label><input type="text" class="input-username">
+	<br>
+	<button class='button-connect-signaling'>Connect Signaling Server</button>
+
+	<div class="dropdown input-remote-username-dropdown">
+		<label class="dropdown-label">Remote Username</label><input type="text" class="input-remote-username">
+		<br>
+		<div class="dropdown-content"> 
+		</div>
+	</div>
+
+	<div class="dropdown-option-default" style="display: none;">
+		<div class="dropdown-option">
+			<label class="dropdown-option-label">default-user</label>
+		</div>
+	</div>
+
+	<button class="button-call">Call</button>
+
+	<script src="js/rtc_communication.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

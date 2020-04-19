@@ -3,7 +3,7 @@
 // helps to write cleaner code (e.g. prevents use of undeclared variables)
 'use strict';
 
-var webSocketServerIP = "192.168.178.56";
+var webSocketServerIP = "192.168.0.102";
 //var webSocketServerIP = "localhost";
 
 var webSocketServerPort = "8090";

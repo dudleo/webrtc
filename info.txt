@@ -1,9 +1,0 @@
-
-
-
-websocketserver:
-	ipaddr: 192.168.178.56
-	port: 8090
-
-
-

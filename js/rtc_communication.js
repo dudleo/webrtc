@@ -25,9 +25,11 @@ function rtc_onconnectionstatechange_cb(event){
 
 
 function video_mousedown_cb(){
-  var clickedVideo = $(this)[0];
+  var clickedVideo = this;
   var mainVideo = $('.main_video')[0];
   mainVideo.srcObject = clickedVideo.srcObject;
+
+  console.log(this);
 }
 
 // receive remote source

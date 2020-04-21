@@ -44,7 +44,7 @@ function connect(){
 
   sigConnection.onopen = function(){
     console.log('Status: signal-connection opened.');
-    $('.button-connect-signaling').hide();
+    $('.settings').hide();
   };
 
   sigConnection.onmessage = async function(msgString){
@@ -138,7 +138,7 @@ function connect(){
 
   sigConnection.onclose = function(){
     console.log('Status: signal-connection closed.');
-    $('.button-connect-signaling').show();
+    $('.settings').show();
   }
 
   sigConnection.onerror = function(evt) {
@@ -158,6 +158,12 @@ $('.button-connect-signaling').click(function(){
   //console.log('Status: Button button-connect-signaling clicked.');
   //connect();
 //});
+
+$('video').mousedown(function(){
+  var clickedVideo = $(this)[0];
+  var mainVideo = $('.main_video')[0];
+  mainVideo.srcObject = clickedVideo.srcObject;
+});
 
 $('.button-call').mousedown(async function(){
 

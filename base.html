@@ -11,8 +11,8 @@
 
 	<style>
 		video{
-			width: 40vw;
-			height: 30vw;
+			width: 100%;
+			height: 30vh;
 		}
 
 		label{
@@ -101,13 +101,45 @@
 		bottom: 0;
 	}
 
+	.main_content_container{
+		width: 100%;
+		height: 100%;
+	}
+
+	.main_video_container{
+		width: 80%;
+		height: 100%;
+		position: fixed;
+		left: 0;
+		background-color: #66ff99;
+	}
+
+	.main_video_container video{
+		height: 100%;
+	}
+
+	.videos{
+		width: 20%;
+		height: 100%;
+		position: fixed;
+		right: 0;
+		background-color: #66ff99;
+	}
+
 </style>
 </head>
 <body>
-	<h1>THIS IS ONE GREAT PAGE</h1>
+
+	<div class="main_content_container">
+
+	<div class="main_video_container">
+		<video class="main_video" autoplay></video>
+	</div>
 
 	<div class="videos">
 		<video class="local_video" autoplay></video>
+	</div>
+
 	</div>
 
 	<div class="settings">
@@ -115,6 +147,7 @@
 	<label>Username</label><input type="text" class="input-username">
 	<br>
 	<button class='button-connect-signaling'>Connect Signaling Server</button>
+
 
 	<div class="dropdown input-remote-username-dropdown">
 		<label class="dropdown-label">Remote Username</label><input type="text" class="input-remote-username">

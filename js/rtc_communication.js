@@ -24,6 +24,12 @@ function rtc_onconnectionstatechange_cb(event){
 }
 
 
+function video_mousedown_cb(){
+  var clickedVideo = $(this)[0];
+  var mainVideo = $('.main_video')[0];
+  mainVideo.srcObject = clickedVideo.srcObject;
+}
+
 // receive remote source
 function rtc_ontrack_cb(event) {
 	console.log('rtcConnection remote track received.');
@@ -65,6 +71,9 @@ function rtc_ontrack_cb(event) {
 		
 		$('.videos').find('.remote_video_new').attr('id', 'rtc' + rtcConnectionID);
 		$('.videos').find('.remote_video_new').css('display', 'initial');
+
+		$('.videos').find('.remote_video_new').onmousedown = video_mousedown_cb;
+
 		$('.videos').find('.remote_video_new').removeClass('remote_video_new');
 	}
 }

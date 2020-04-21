@@ -29,7 +29,6 @@ function video_mousedown_cb(){
   var mainVideo = $('.main_video')[0];
   mainVideo.srcObject = clickedVideo.srcObject;
 
-  console.log(this);
 }
 
 // receive remote source

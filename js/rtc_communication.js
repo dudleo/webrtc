@@ -74,7 +74,7 @@ function rtc_ontrack_cb(event) {
 		$('.videos').find('.remote_video_new').attr('id', 'rtc' + rtcConnectionID);
 		$('.videos').find('.remote_video_new').css('display', 'initial');
 
-		$('.videos').find('.remote_video_new').onmousedown = video_mousedown_cb;
+		$('.videos').find('.remote_video_new').mousedown(video_mousedown_cb);
 
 		$('.videos').find('.remote_video_new').removeClass('remote_video_new');
 	}

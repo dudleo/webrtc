@@ -31,6 +31,22 @@ function video_mousedown_cb(){
 
 }
 
+async function rtc_onicecandidate_cb(event){
+	var candidate = event.candidate;
+
+	var rtcConnectionID = 0; 
+	var i = 0;
+	for (i=0; i<rtcConnections.length; i++) {
+		if (rtcConnections[i] === this) {
+		  rtcConnectionID = i;
+		  break;
+		}
+	}
+	var remoteUsername = rtcUsernames[rtcConnectionID];
+	
+	sendICECandidate(candidate, remoteUsername);
+}
+
 // receive remote source
 function rtc_ontrack_cb(event) {
 	console.log('rtcConnection remote track received.');
@@ -111,6 +127,7 @@ async function createOffer(remoteUsername){
 	
 	rtcConnection.onconnectionstatechange = rtc_onconnectionstatechange_cb;
 	rtcConnection.ontrack = rtc_ontrack_cb;
+	rtcConnection.onicecandidate = rtc_onicecandidate_cb;
 
     localStream.getTracks().forEach(
     	(track) => rtcConnection.addTrack(track, localStream));
@@ -121,11 +138,12 @@ async function createOffer(remoteUsername){
 
 	console.log(rtcConnection.iceGatheringState);
 	// wait for ICE to gather all routes
+	/*
 	while(rtcConnection.iceGatheringState != 'complete'){
 		await timeout(100);
 		console.log(rtcConnection.iceGatheringState);
 	}
-
+	*/
 	offer = rtcConnection.localDescription;
 
 	return offer;
@@ -151,10 +169,12 @@ async function createAnswer(offer, remoteUsername){
 
     console.log(rtcConnection.iceGatheringState);
 	// wait for ICE to gather all routes
+	/*
 	while(rtcConnection.iceGatheringState != 'complete'){
 		await timeout(100);
 		console.log(rtcConnection.iceGatheringState);
 	}
+	*/
 
 	answer = rtcConnection.localDescription;
 
@@ -171,6 +191,32 @@ async function acceptAnswer(answer, remoteUsername){
 		}
 	}
 	
+}
+
+async function acceptICECandidate(candidate, remoteUsername){
+	var i;
+	for (i=0; i<rtcUsernames.length; i++) {
+		if (rtcUsernames[i] === remoteUsername) {
+		  await rtcConnections[i].addIceCandidate(candidate);
+		  break;
+		}
+	}
+}
+
+function sendICECandidate(candidate, remoteUsername){
+	var username = $('.input-username').val();
+
+	var msgJSON = {
+	    name: username,
+	    type: 'new-ice-candidate',
+	    target: remoteUsername,
+	    candidate: candidate
+	};
+
+
+	console.log('Status: sending new ice candidate: ', msgJSON);
+
+	sendToServer(msgJSON);
 }
 
 getUserMediaStream();

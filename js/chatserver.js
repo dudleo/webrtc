@@ -254,8 +254,9 @@ webSocketServer.on('request', function(request) {
       var msgIn = JSON.parse(msgStringIn.utf8Data);
 
       // this === getConnectionFromID(msgIn.id) (true)
-      var connect = getConnectionFromID(msgIn.id);
-      
+      //var connect = getConnectionFromID(msgIn.id);
+      var connect = this
+
       // Take a look at the incoming object and act on it based
       // on its type. Unknown message types are passed through,
       // since they may be used to implement client-side features.
@@ -266,6 +267,7 @@ webSocketServer.on('request', function(request) {
         // Public, textual message
         case "video-offer":
         case "video-answer":
+        case "new-ice-candidate"
           console.log('Status: message forwarding.')
           sendMsgToUser(msgIn.target, JSON.stringify(msgIn));
           break;

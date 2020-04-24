@@ -107,6 +107,11 @@ function connect(){
         await acceptAnswer(answer, msgJSONIn.name);
         break;
 
+      case "new-ice-candidate":
+        var candidate = msgJSONIn.candidate; 
+        await acceptICECandidate(candidate, msgJSONIn.name);
+        break;
+
       case "new-user":
         console.log('Status: new user');
         

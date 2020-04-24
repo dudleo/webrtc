@@ -267,7 +267,7 @@ webSocketServer.on('request', function(request) {
         // Public, textual message
         case "video-offer":
         case "video-answer":
-        case "new-ice-candidate"
+        case "new-ice-candidate":
           console.log('Status: message forwarding.')
           sendMsgToUser(msgIn.target, JSON.stringify(msgIn));
           break;
